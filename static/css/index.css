@@ -1,0 +1,678 @@
+*{
+    font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color:#333;
+}
+span{
+    margin: 0;
+    padding: 0; 
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#toolbar{
+    widows: 100%;
+    height:36px;
+    border-bottom: 1px solid #ddd;
+}
+#toolbar a,span{
+    font:14px/36px 'Arial', 'Microsoft Yahei';
+}
+.toolbar_auto{
+    width: 1190px;
+    height: 36px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; 
+    overflow: hidden;
+}
+.toolbar_auto .left{
+    display: flex;
+}
+.toolbar_auto .left div:first-child{
+    width: 103px;
+    height: 36px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+}
+.toolbar_auto .left div:first-child span{
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    box-sizing: border-box;
+    background: url(../image/header/toolbar.png);
+    background-position: 0px 0px;
+}
+.toolbar_auto .left div:nth-child(2){
+    width: 70px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+}
+.toolbar_auto .left div:nth-child(2) span:first-child{
+    width: 9px;
+    height: 15px;
+    box-sizing: border-box;
+    background: url(../image/header/toolbar.png);
+    background-position: -31px 0px;
+    margin-right: 5px;
+}
+.toolbar_auto .right ul{
+    display: flex;
+    width: 338px;
+    height:36px;
+    line-height: 36px;
+}
+.toolbar_auto .right ul li{
+    padding:0px 10px 0 10px;
+    display: flex;
+    align-items: center;
+}
+.toolbar_auto .right ul li:last-child a{
+    margin-left: 10px; 
+}
+.toolbar_auto .right ul li:last-child span{
+    width: 15px;
+    height:13px; 
+    background: url(../image/header/toolbar.png);
+    background-position: -59px 0px; 
+}
+#header{
+    width: 100%;
+    height:130px;
+}
+#header a,span{
+    color: #999;
+    font-family: "SimSun";
+    font-size: 12px;
+}
+.top_auto{
+    width: 1190px;
+    height:100px;
+    padding: 15px 0px 15px 0;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+.top_search{
+    width:600px;
+    height:61px;
+    margin-left:34px;
+}
+#top_search_submit{
+    display: flex;
+}
+.top_search_recommend{
+    width:495px;
+    background: rgba(255, 255, 255,0.7);
+    position: relative;
+    z-index: 1001;
+    border: 1px solid #ccc;
+    border-top: none;
+    padding: 10px;
+}
+.top_search_recommend a{
+    color:black !important;
+    font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
+}
+#top_search_submit input:first-child{
+    width: 494px;
+    height:26px;
+    padding: 5px 10px 5px 10px;
+    border: 3px solid #e53;
+    outline:none;   
+}
+#top_search_submit input:last-child{
+    width: 80px;
+    height:42px;
+    border: 3px solid #e53;
+    outline:none; 
+    background:#e53;  
+    color: #fff;
+}
+.top_right{
+    margin-left:130px;
+}
+#nav{
+    width:100%;
+    height: 36px;
+    background:#e53;   
+}
+.nav_auto{
+    width: 1190px;
+    height:36px;
+    margin:0 auto;
+    display: flex;    
+}
+.nav_left{
+    width:178px;
+    height:36px;
+    padding: 0 10px;;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #c20;  
+} 
+.nav_left a{
+    font:16px/36px "Microsoft YaHei";
+    color: #fff;
+}
+.nav_left span{
+    width: 16px;
+    height:10px;
+    background: url(../image/header/toolbar.png);
+    background-position: 0px -21px;   
+}
+.nav_center{
+    width:784px;
+    height: 36px;
+    display: flex;
+}
+.nav_center a{
+    height: 36px;
+    padding:0 17px;
+    font:16px/36px "Microsoft YaHei";
+    color: #fff;
+}
+.shop_left{
+    margin-left:110px;
+    width:142px;
+    height:36px;
+    box-sizing: border-box;
+}
+.shop_c{
+    width:128px;
+    height:36px;
+    padding-left: 10px;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    background: #c20;
+    overflow: hidden;
+}
+.shop_text{
+    width: 73px;
+    height:36px;
+    display: flex;
+    align-items: center;    
+}
+.shop_text a{
+    font:16px/36px "Microsoft YaHei";
+    color: #fff;
+}
+.shop_text span{
+    width:20px;
+    height:19px;
+    margin-right: 5px;
+    background: url(../image/header/toolbar.png);
+    background-position: -31px 59px;  
+}
+.shop_c>span{
+    width:25px;
+    height:36px;
+    padding: 0 15px;
+    text-align: center;
+    font:16px/36px "Microsoft YaHei";
+    color: #fff;
+}
+.active{
+    background: #9a0000;
+}
+.shop_cart{
+    width: 298px;
+    height:164px;
+    border:3px solid red;
+    z-index: 1001;
+    position: relative;
+    left: -164px;
+    display: none;
+}
+.shop_top_cont{
+    width: 100%;
+    height:451px;
+    background: #f3f3f3;   
+}
+.shop_top_auto{
+    width:1190px;
+    height:451px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+}
+.shop_top_auto .menu_left{
+    width: 188px;
+    height: 450;
+    border-right: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-top: 1px solid #fff;
+    background: #fff;
+}
+.shop_top_auto .menu_list{
+    width: 100%;
+    height: 112px;
+    border-bottom: 1px solid #ccc;
+}
+.menu_list .menu_list_1{
+    width: 168px;
+    height: 93px;
+    padding: 8px 9px 9px 9px;
+}
+.menu_title a{   
+    font: 16px/18px "Microsoft YaHei";
+    color: #333;   
+}
+.menu_body span a{
+    color: #666;
+    font: 14px/16px "Microsoft YaHei";
+}
+.menu_list_1 .menu_title{
+    width: 172px;
+    height: 24px;
+    display:flex;
+    align-items: center;    
+}
+.menu_list_1 .menu_title span:first-child{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    background:url(../image/header/icon.png);
+    background-position: 144px 189px;  
+} 
+.menu_list_2 .menu_title span:first-child{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    background:url(../image/header/icon.png);
+    background-position: 110px 189px;
+    
+} 
+.menu_list_3 .menu_title span:first-child{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    background:url(../image/header/icon.png);
+    background-position: 78px 189px;
+    
+}
+.menu_list_4 .menu_title span:first-child{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    background:url(../image/header/icon.png);
+    background-position: 145px 163px;  
+}
+.menu_list_5 .menu_title span:first-child{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    background:url(../image/header/icon.png);
+    background-position: 112px 163px;   
+}
+.diy_3{
+    width: 168px;
+    height: 67px !important;
+}
+.menu_list_3{
+    width: 168px;
+    height: 47px !important;
+} 
+.menu_list_3 .menu_body_3{
+    height: 22.7px !important;
+}
+.diy_4{
+    width: 168px;
+    height: 89px !important;
+}
+.menu_list_4{
+    width: 168px;
+    height: 70px !important;
+} 
+.menu_list_4 .menu_body_4{
+    height: 50px !important;
+}
+.diy_5{
+    width: 168px;
+    height: 70px !important;
+}
+.menu_list_5{
+    width: 168px;
+    height: 52px !important;
+} 
+.menu_list_5 .menu_body_5{
+    height: 22.7px !important;
+}
+.menu_list_1 .menu_title a{ 
+    margin-left: 5px;   
+} 
+.menu_list_1 .menu_title span:last-child{
+    width: 6px;
+    height: 9px;
+    margin-left:68px;
+    background:url(../image/header/icon.png);
+    background-position: 145px 138px;   
+} 
+.menu_list_1 .menu_body{
+    width: 168px;
+    height: 68px;
+    display: flex;
+    flex-wrap: wrap;   
+}
+.menu_list_1 .menu_body span{
+    width: 55px;
+    height: 17.78px;
+    padding-top: 5px;
+    font: 13px/16px 'Arial', 'Microsoft Yahei'; 
+}
+[v-cloak]{
+    display: none;
+}
+.banner_auto{
+    width:800px;
+    height: 451px;
+}
+.banner{
+    width:800px;
+    height: 360px;
+}
+.banner_bot{
+    width:800px;
+    height: 91px;
+    display: flex;
+}
+.shop_right .rx{
+    width: 200px;
+    height:200px;
+    font:16px/18px "Microsoft YaHei" !important;  
+}
+.shop_right .zx{
+    width: 180px;
+    height:59px;
+    padding:10px 10px;  
+}
+.zx_tit p{
+    font:16px/18px "Microsoft YaHei" !important;
+}
+.tempWrap a{
+    font-family: arial,"SimSun";
+    color: #333;
+    font-size: 12px;
+}
+.dy{
+    widows: 180px;height:45px;
+    padding: 0 10px;
+}
+.dy_bot{
+    width:180px;
+    height:24px;
+}
+.dy_bot input:first-child{
+    width:110px;
+    height: 22px;
+    padding: 0px 5px 0 5px;
+    border:1px solid #ccc;
+    outline: none;
+}
+.dy_bot input:last-child{
+    width:50px;
+    height: 24px;
+    outline: none;
+    background: #e53;
+    border: none;
+    color: #fff;
+}
+.dy strong {
+    color: #333;
+    font-family: "SimSun";
+    font-size: 12px;  
+}
+.az{
+    margin-top:37px;
+    width:180px;
+    height: 69px;
+    padding: 10px 10px;
+}
+.az dl{
+    display: flex;
+    flex-wrap: wrap;
+}
+.az dl div{
+    margin-left: 10px;
+}
+.az dt{
+    width:70px;
+    height:70px;
+}
+.az dd{
+    font: 12px "Microsoft YaHei";
+    color:#333;   
+}
+.az dd:nth-child(2){
+    height: 16px;
+    width:50px ;
+    color: #e53;    
+}
+.az dd:last-child{
+    padding-top: 5px;
+    height: 37px;
+    width:80px; 
+}
+.login_color{
+    position: fixed;
+    left:0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    z-index:1001;
+    background: rgba(0,0,0,.3);
+    display: none;
+}
+.login_color>div{
+    display: flex;
+    justify-content: center;
+    margin-top:15%;
+}
+.login_area{
+    width:370px;
+    height: 318px;
+    background: #fff;  
+}
+.login_area>span{
+    display: inline-block;
+    width: 37px;
+    height:37px;
+    text-align: center;
+    line-height: 37px;
+    margin-left: 331px;
+}
+.login_area>span>img{
+    width:37px;
+    height: 37px;
+}
+.right_side{
+    width:48px;
+    height:294px;
+    z-index:1000;
+    position: fixed;
+    top: 69%;
+    left:230px;
+}
+.right_side a{
+    width: 48px;
+    height:48px;
+    display: block;
+}
+.right_side a:nth-child(1){
+    background: url(../image/header/btn.png);
+    background-position: 0px 0px
+}
+.right_side a:nth-child(2){
+    background: url(../image/header/btn.png);
+    background-position: 0px -49px;
+    margin-top: 1px;
+}
+.right_side a:nth-child(3){
+    background: url(../image/header/btn.png);
+    background-position: 0px -98px;
+    margin-top: 1px;
+}
+.right_side a:nth-child(4){
+    background: url(../image/header/btn.png);
+    background-position: 0px -147px;
+    margin-top: 1px;
+}
+.right_side a:nth-child(5){
+    background: url(../image/header/btn.png);
+    background-position: 0px -245px;
+    margin-top: 1px;
+}
+.right_side a:nth-child(6){
+    background: url(../image/header/btn.png);
+    background-position: 0px -196px;
+    margin-top: 1px;
+}
+/* 火爆商品 */
+#content{
+    width:100%;
+    height:100%;
+    padding-bottom: 30px;
+}
+#content .body_auto{
+    width:1190px;
+    height: 100%;
+    margin: 0 auto;
+}
+.hot_pro{
+    width: 100%;
+    height: 244px;
+    margin-top: 25px;
+}
+.hot_pro_t{
+    line-height: 22px;
+    display: flex;
+    justify-content: space-between;  
+}
+.hot_pro_t h2{
+    color: #e53;
+    font-weight: normal;
+    font-size: 20px;
+}
+.hot_pro_t a{
+    color: #666;
+    font-size: 14px;
+}
+.hot_pro_b{
+    margin-top:10px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 1px solid #e6e6e6;
+}
+.hot_pro_b dl{
+    padding:20px 10px 15px 10px ;
+    width: 198px;
+    height:210px;
+    box-sizing: border-box;
+    text-align: center; 
+}
+.hot_pro_b dl dd{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.hot_pro_b img{
+    width: 120px; 
+}
+.hot_pro_b dl a{
+    font-size: 14px ;
+    color: #666;  
+}
+.hot_pro_b dd:last-child{
+    display: flex;
+    justify-content: space-between; 
+    height: 26px; 
+}
+.hot_pro_b dd:last-child span:first-child{
+    color: #e53;
+    font-size: 14px;
+    font-family: arial,"SimSun"; 
+    width: 50%;
+    text-align: left;
+} 
+.hot_pro_b dd:last-child span{ 
+    width: 50%;
+    font-size: 12px;
+    font-family: arial,"SimSun"; 
+    text-align: right;
+}
+/* 知名品牌 */
+.brand{
+    width: 1190px;
+    height:302px;
+    margin:0 auto;
+    margin-top:25px;
+}
+.brand_bot{
+    width: 1190px;
+    margin-top:10px;
+    height: 270px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;  
+}
+.brand_img_small{
+    display: flex;
+    width: 190px;
+    flex-wrap: wrap;
+}
+/* 狗狗商品 */
+.dog{
+    width: 1190px;
+    height: 520px;
+    
+    border: 1px solid red;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.dog_top{
+    width: 100%;
+    height: 38px;
+    border-bottom: 2px solid #e53;
+    display: flex;
+}
+.dog_tit{
+    width: 190px;
+    height: 30px;
+    padding-top:5px;
+    display: flex;
+}
+.dog_tit span{
+    width: 35px;
+    height: 30px;
+    margin-right: 5px;
+    border: 1px solid red;
+}
+.dog_tit h2{
+    color: #e53;
+    font: 20px/30px "Microsoft YaHei";
+}
+.dog_nav{
+    width: 684px;
+    /* height:32px; */
+    /* border: 1px solid red; */
+    line-height: 32px;
+    padding-top:5px; 
+
+    /* background: #e53; */
+    /* padding: 0 16px; */
+    display: flex;
+}
+.dog_nav a{
+    font:15px/32px "Microsoft YaHei" ;
+    height: 32px;
+    padding: 0 16px;
+    display: block;
+}

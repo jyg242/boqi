@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="./css/reset.css"> -->
+    <link rel="stylesheet" href="./css/index.css">  
+    <link rel="stylesheet" type="text/css" href="./css/banner.css">
+    <link rel="shortcut icon" href="http://shop.boqii.com/favicon.ico">
+    <script src="./js/vue.js"></script>
+    <title>小飞波奇网-仿</title>
+    <style>
+        /* body{
+            height:3000px;
+        } */
+    </style>
+</head>
+<body>
+    <!-- 1.工具栏 toolbar- -开始-->
+    <div id='toolbar'>
+        <div class="toolbar_auto">
+            <div class="left">
+                <div class="collect"  @click='collect($event)'>
+                    <span></span><a href="javascript:;">收藏波奇商城</a>
+                </div>
+                <div class='city'>
+                    <span></span><span>上海</span>
+                </div>
+            </div>
+            <div class="right" v-cloak>
+                <ul>
+                    <li v-show='isLogin' @click='login()'><a href="javascript:;">登录</a></li>
+                    <li v-show='isLogin'><a href="">注册</a></li>
+                    <li v-show='!isLogin'  ><a  href="">{{name}}</a></li>
+                    <li><a href="">手机版</a></li>
+                    <li><a href="">关注波奇</a></li>
+                    <li><span></span><a href="">波奇首页</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 结束 -->
+    <!-- 2.header栏logo,search 开始 -->
+    <div id='header' >
+        <div class="top_auto">
+            <div class="logo_left">
+                <a href=""><img src="./image/header/logon.jpg" alt=""></a>
+            </div>
+            <div class="top_search">
+                <div class='top_search_t'>
+                    <form action="" id='top_search_submit'>
+                        <input type="text" placeholder="博纳纯天然"  v-model='search_content'  @blur='push_search'>
+                        <input type="submit" value="搜索">
+                    </form>
+                </div>
+                <!-- 关键词搜索推荐 -->
+                <div  class="top_search_recommend" v-if='issearch' v-cloak>
+                    <ul>
+                        <li @click='jump'><a href="www.baidu.com">{{cs_2}}</a></li>
+                        <li><a href="">{{cs_2}}</a></li>
+                        <li><a href="">{{cs_2}}</a></li>
+                    </ul>
+                </div>
+                <div class="top_search-b" v-else>
+                    <span>热门搜索:</span>
+                     <a href="" v-for='key of top_search_b' v-cloak>{{key}}</a>
+                     <a href="">进口猫粮</a>
+                     <a href="">猫厕所</a>
+                     <a href="">猫笼</a>
+                     <a href="">口腔护理</a>
+                     <a href="">美发护肤</a>                    
+                </div>
+            </div>
+            <div class="top_right">
+                <img src="http://127.0.0.1:3000/image/header/ad2.gif" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- 结束 -->
+    <!-- 3.导航栏nav开始 -->
+    <div id="nav">
+        <div class="nav_auto">
+            <div class="nav_left">
+                <a href="">全部商品分类</a>
+                <span></span>
+            </div>
+            <div class="nav_center">
+                <a href="" class='active'>首页</a>
+                <a href="">狗狗</a>
+                <a href="">猫猫</a>
+                <a href="">小宠</a>
+                <a href="">水族</a>
+                <a href="">全球购</a>
+                <a href="">创意生活</a>
+                <a href="">品牌馆</a>
+                <a href="">波奇服务</a>
+            </div>
+            <div class="shop_left">
+                <div class="shop_c">
+                    <div class="shop_text">
+                        <span></span>
+                        <a href="">购物车</a>
+                    </div>          
+                    <span class="ITopCatNum">0</span>
+                </div>
+                <!-- 购物车内容模块 -->
+                <div class="shop_cart none"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 结束 -->
+    <!-- 副导航开始 -->
+    <!-- <div class="right_side" @mouseover='right_side_fn()'>
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a> -->
+    </div>    
+    <!-- 结束 -->
+    <!-- 4.menu开始 -->
+    <div class="shop_top_cont">
+        <div class="shop_top_auto">
+            <div class="menu_left">
+                <div class="menu_list">
+                    <div class="menu_list_1">
+                        <div class="menu_title">
+                            <span></span>
+                             <a href="">狗狗商品</a>
+                             <span></span>
+                        </div>
+                        <div class="menu_body">
+                            <span v-for='key in menu_body_dog'><a href="">{{key}}</a></span>
+                            <!-- <span><a href="">零食</a></span>
+                            <span><a href="">医疗</a></span>
+                            <span><a href="">保健</a></span>
+                            <span><a href="">出行</a></span>
+                            <span><a href="">日用</a></span>
+                            <span><a href="">玩具</a></span>
+                            <span><a href="">美容</a></span> -->
+                        </div>
+                    </div>
+                    <div class="menu_right_one"></div>
+                </div>
+                <div class="menu_list">
+                    <div class="menu_list_2  menu_list_1">
+                        <div class="menu_title">
+                            <span></span>
+                             <a href="">猫猫用品</a>
+                             <span></span>
+                        </div>
+                        <div class="menu_body">
+                            <span v-for='key in menu_body_cat'><a href="">{{key}}</a></span>
+                            <!-- <span><a href="">零食</a></span>
+                            <span><a href="">医疗</a></span>
+                            <span><a href="">保健</a></span>
+                            <span><a href="">出行</a></span>
+                            <span><a href="">日用</a></span>
+                            <span><a href="">玩具</a></span>
+                            <span><a href="">美容</a></span> -->
+                        </div>
+                    </div>
+                    <div class="menu_right_two"></div>
+                </div>
+                <div class="menu_list diy_3">
+                    <div class="menu_list_3 menu_list_1">
+                            <div class="menu_title">
+                                <span></span>
+                                <a href="">奇趣小宠</a>
+                                <span></span>
+                            </div>
+                            <div class="menu_body menu_body_3">
+                                <span  v-for='key in menu_body_small'><a href="">{{key}}</a></span>
+                                <!-- <span><a href="">零食</a></span>
+                                <span><a href="">医疗</a></span> -->
+                                
+                            </div>
+                        </div>
+                        <div class="menu_right_three"></div>
+                </div>
+                <div class="menu_list diy_4">
+                    <div class="menu_list_4 menu_list_1">
+                        <div class="menu_title">
+                            <span></span>
+                             <a href="">水族市场</a>
+                             <span></span>
+                        </div>
+                        <div class="menu_body menu_body_4">
+                            <span v-for='key in menu_body_fish'><a href="">{{key}}</a></span>
+                            <!-- <span><a href="">零食</a></span>
+                            <span><a href="">医疗</a></span>
+                            <span><a href="">保健</a></span>
+                            <span><a href="">出行</a></span> -->  
+                        </div>
+                    </div>
+                    <div class="menu_right_four"></div>
+                </div>
+                <div class="menu_list diy_5">
+                    <div class="menu_list_5 menu_list_1">
+                        <div class="menu_title">
+                            <span></span>
+                             <a href="">萌宠周边</a>
+                             <span></span>
+                        </div>
+                        <div class="menu_body  menu_body_5">
+                            <span v-for='key in menu_body_around'><a href="">{{key}}</a></span>
+                            <!-- <span><a href="">零食</a></span>
+                            <span><a href="">医疗</a></span> -->
+                        </div>
+                    </div>
+                    <div class="menu_right_five"></div>
+                </div>
+            </div>
+     
+    <!-- 结束 -->
+    <!-- 轮播开始 -->
+        <div class="banner_auto" >
+            <div class="banner" id="banner1" >
+                    <div class="banner-view"></div>
+                    <div class="banner-btn"></div>
+                    <div class="banner-number"></div>
+                    <div class="banner-progres"></div>
+            </div>
+            <div class="banner_bot"> 
+                <a href='' v-for='key in banner_bot_hot'><img :src='key' alt=""></a>
+                <!-- <a href=''><img src="./image/header/shoppicpath1479882804.jpg"alt=""></a>
+                <a href=''><img src="./image/header/shoppicpath1479882804.jpg"alt=""></a> -->
+            </div>
+        </div>
+        <!-- 结束 -->
+        <!-- 右侧开始 -->
+        <div class="shop_right">
+            <div class="rx">
+                <a href=""><img src="./image/header/shoppicpath1529976927.jpg" alt=""></a>
+            </div>
+            <div class="zx">
+                <div class="zx_tit">
+                    <p>波奇资讯</p><span></span><span></span>
+                </div>
+                <div class="tempWrap">
+                    <ul>
+                        <li><a href="">全球直邮商品暂停售卖通知</a></li>
+                        <li><a href="">江浙沪皖京津粤满59元免运费</a></li>
+                    </ul>
+                </div>               
+            </div>
+            <div class="dy">
+                <strong>订阅促销信息</strong>
+                <div class="dy_bot">
+                    <input type="text" placeholder="请输入Email地址"><input type="submit" value="订阅">
+                </div>
+            </div>
+            <div class="az">
+                <dl>
+                    <dt><img src="./image/header/app_small.jpg" alt=""></dt>
+                    <div>
+                    <dd>波奇客户端</dd>
+                    <dd>注册立享270,<br>首单再送330</dd>
+                    </div>
+                </dl>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <!-- 登录时背景蒙色 -->
+    <div class="login_color">
+        <div>
+            <div class="login_area">
+                <span @click='login_closed()'><img src="./image/header/closed.png" alt=""></span>
+                <form action=""></form>
+            </div>
+        </div>
+    </div>
+    <!-- 主体部分开始 -->
+    <!-- 火爆商品 -->
+    <div id='content'>
+        <div class='body_auto'>
+            <!-- 火爆商品开始 -->
+            <div class='hot_pro'>
+                <div class="hot_pro_t">
+                    <h2>火爆商品</h2>
+                    <a href="">换一批</a>
+                </div>
+                <div class='hot_pro_b'>
+                    <dl>
+                        <dt><img src="./image/header/1.jpg" alt=""></dt>
+                        <dd><a href="">比瑞吉 室内成猫粮天然粮2kg</a></dd>
+                        <dd>
+                            <span>¥119.00</span>
+                            <span>已售:15399</span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="./image/header/1.jpg" alt=""></dt>
+                        <dd><a href="">比瑞吉 室内成猫粮天然粮2kg</a></dd>
+                        <dd>
+                            <span>¥119.00</span>
+                            <span>已售:15399</span>
+                        </dd>
+                    </dl>
+                    <dl>
+                            <dt><img src="./image/header/1.jpg" alt=""></dt>
+                            <dd><a href="">比瑞吉 室内成猫粮天然粮2kg</a></dd>
+                            <dd>
+                                <span>¥119.00</span>
+                                <span>已售:15399</span>
+                            </dd>
+                    </dl>
+                    <dl>
+                            <dt><img src="./image/header/1.jpg" alt=""></dt>
+                            <dd><a href="">比瑞吉 室内成猫粮天然粮2kg</a></dd>
+                            <dd>
+                                <span>¥119.00</span>
+                                <span>已售:15399</span>
+                            </dd>
+                    </dl>
+                    <dl>
+                            <dt><img src="./image/header/1.jpg" alt=""></dt>
+                            <dd><a href="">比瑞吉 室内成猫粮天然粮2kg</a></dd>
+                            <dd>
+                                <span>¥119.00</span>
+                                <span>已售:15399</span>
+                            </dd>
+                    </dl>
+                    <dl>
+                            <dt><img src="./image/header/1.jpg" alt=""></dt>
+                            <dd><a href="">比瑞吉 室内成猫粮天然粮2kg</a></dd>
+                            <dd>
+                                <span>¥119.00</span>
+                                <span>已售:15399</span>
+                            </dd>
+                    </dl>
+                    
+                </div>               
+            </div>
+            <!-- 火爆商品结束 -->
+        </div>
+    <!-- 知名品牌 -->
+        <div class='brand'>
+            <div class='hot_pro_t'>
+                <h2>知名品牌　放心选择</h2>
+                <a href="">更多品牌 »</a>
+            </div>
+            <div class="brand_bot">
+                <div>    
+                    <a href=""><img src="./image/header/a1.jpg" alt=""></a>
+                </div>
+                <div class="brand_img_small">    
+                    <a href=""><img src="./image/header/a2.jpg" alt=""></a>
+                    <a href=""><img src="./image/header/a3.jpg" alt=""></a>
+                </div>
+                <div>    
+                    <a href=""><img src="./image/header/a1.jpg" alt=""></a>
+                </div>
+                <div class="brand_img_small">    
+                    <a href=""><img src="./image/header/a2.jpg" alt=""></a>
+                    <a href=""><img src="./image/header/a3.jpg" alt=""></a>
+                </div>
+                <div>    
+                    <a href=""><img src="./image/header/a1.jpg" alt=""></a>
+                </div>
+                <div class="brand_img_small">    
+                    <a href=""><img src="./image/header/a2.jpg" alt=""></a>
+                    <a href=""><img src="./image/header/a3.jpg" alt=""></a>
+                </div>
+            </div>
+        </div> 
+        <!-- 知名品牌结束    -->
+        <!-- 狗狗商品开始 -->
+        <div class="dog">
+            <div class="dog_top">
+                <div class="dog_tit">
+                    <span></span>
+                    <h2>狗狗商品</h2>
+                </div>
+                <div class="dog_nav">
+                    <a href="">狗粮</a>
+                    <a href="">湿粮</a>
+                    <a href="">零食</a>
+                    <a href="">保健品</a>
+                    <a href="">医疗</a>
+                    <a href="">沐浴露</a>
+                    <a href="">日用品</a>
+                    <a href="">美容</a>
+                    <a href="">玩具</a>
+                    <a href="">衣服窝</a>
+                </div>
+            </div>
+            <div class="dog_bot">
+                <div class="dog_l">
+                    <div><img src="./image/header/dog1.jpg" alt=""></div>
+                </div>
+                <div class="dog_c">
+                    <div class="dog_c_t">
+                        <dl>
+                            <dt></dt>
+                            <dd></dd>
+                            <dd></dd>
+                        </dl>
+                        <dl>
+                            <dt></dt>
+                            <dd></dd>
+                            <dd></dd>
+                        </dl>
+                        <dl>
+                            <dt></dt>
+                            <dd></dd>
+                            <dd></dd>
+                        </dl>
+                        <dl>
+                            <dt></dt>
+                            <dd></dd>
+                            <dd></dd>
+                        </dl>
+                        <dl>
+                            <dt></dt>
+                            <dd></dd>
+                            <dd></dd>
+                        </dl>
+                        <dl>
+                            <dt></dt>
+                            <dd></dd>
+                            <dd></dd>
+                        </dl>
+                        <dl>
+                            <dt></dt>
+                            <dd></dd>
+                            <dd></dd>
+                        </dl>
+                        <dl>
+                            <dt></dt>
+                            <dd></dd>
+                            <dd></dd>
+                        </dl>
+                    </div>
+                    <div class="dog_c_b">
+                        <a href=""><img src="" alt=""></a>
+                        <a href=""><img src="" alt=""></a>
+                        <a href=""><img src="" alt=""></a>
+                        <a href=""><img src="" alt=""></a>
+                        <a href=""><img src="" alt=""></a>
+                        <a href=""><img src="" alt=""></a>
+                        <a href=""><img src="" alt=""></a>
+                        <a href=""><img src="" alt=""></a>
+                    </div>
+                </div>
+                <div class="dog_r">
+                    <div class="dog_r_t"></div>
+                    <div class="dog_r_b"></div>
+                </div>   
+            </div>
+        </div>
+        <!-- 狗狗商品结束 -->
+    </div>   
+</body>
+
+
+<script src="./js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="./js/banner.js"></script>
+<script src="./js/index.js"></script>
+<script>
+    // nav栏houver效果
+    $('.nav_center').on('mouseover','a',function(){
+        $(this).addClass(`active`)
+               .siblings(':not(:first)').removeClass('active')
+    })
+    $('.nav_center').on('mouseout','a',function(){  
+        $(this).parent().children(':not(:first)').removeClass('active')
+    })
+    $('.right_side').on('mouseover','a',function(){
+        // console.log($(this).index())
+       
+    })
+</script>
+<!-- <script>
+    // 1.工具栏
+    // new Vue({
+    //     el:'#toolbar',
+    //     data:{
+    //         // 登录判断
+    //         isLogin:0,
+    //         // 用户登录姓名显示
+    //         ename:'Vue测试',
+    //     },
+    //     methods:{
+    //         login(){
+    //             $('.login_color').show()
+    //         },          
+    //         collect(e){               
+    //             alert('收藏失败,请CTRL+D收藏')
+    //         }
+    //     },
+    //     computed:{
+    //         name(){
+    //             return `hi,${this.ename}`
+    //         }
+    //     }
+    // })  
+    // 关闭登录弹窗
+    new Vue({
+        el:'.login_area',
+        methods:{
+            login_closed(){
+                $('.login_color').hide()   
+            }
+        }
+    })
+    // 2.搜索栏
+    new Vue({
+        el:'.top_search',
+        data:{
+            //推荐搜索栏隐藏出现判断
+            issearch:0,
+            //热门搜索词汇
+            top_search_b:['Vue测试'],
+            search_content:'',
+            cs_1:''
+        },
+        methods:{
+            // 搜索框失去焦点隐藏事件
+            push_search(){
+                this.issearch=0
+            },
+            jump(){
+                alert(1)
+            }
+        },
+            // 双向绑定搜索框输入内容
+        watch:{
+            search_content(){
+                this.cs_1=this.search_content;
+                if(this.cs_1.length>0)
+                this.issearch=1
+            }
+        },
+        computed:{
+            cs_2(){
+                return `为您推荐:${this.cs_1}   日用品`
+            }
+        }
+    })
+    // 3.menu_left 全部商品分类
+    new Vue({
+        el:'.menu_left',
+        data:{
+            // 狗狗商品
+            menu_body_dog:['Vue','零食','医疗','保健','出行','日用','玩具','美容'],
+            // 猫猫用品
+            menu_body_cat:['Vue','零食','医疗','保健','猫砂','日用','玩具','美容'],
+            // 奇趣小宠
+            menu_body_small:['Vue','仓鼠','龙猫'],
+            // 水族市场
+            menu_body_fish:['Vue','零食','医疗','保健','猫砂'],
+            // 萌宠周边
+            menu_body_around:['Vue','小富','龙猫'],
+        }
+    })
+    // 4.轮播图区域
+    new Vue({
+        el:'.banner_bot',
+        data:{
+            // 轮播下方banner_bot
+            banner_bot_hot:['./image/header/shoppicpath1479882804.jpg','./image/header/shoppicpath1479883485.jpg','./image/header/shoppicpath1479883752.jpg']      
+        }
+    })
+    // 副导航
+    
+</script> -->
+<!-- <script type="text/javascript">
+	var banner = new FragmentBanner({
+		container : "#banner1",//选择容器 必选
+		imgs : ['./image/lb1.jpg','./image/lb2.jpg','./image/lb3.jpg','./image/lb4.jpg','./image/lb5.jpg'],//图片集合 必选
+		size : {
+			width : 800,
+			height : 360
+		},//容器的大小 可选
+		//行数与列数 可选
+		grid : {
+			line : 12,
+			list : 14
+		},
+		index: 0,//图片集合的索引位置 可选
+		type : 2,//切换类型 1 ， 2 可选
+		boxTime : 5000,//小方块来回运动的时长 可选
+		fnTime : 10000//banner切换的时长 可选
+	});
+		
+	/*
+	** 只填两个必要参数也是可以的
+	*/
+	
+
+</script> -->
+</html>
